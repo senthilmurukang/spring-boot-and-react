@@ -9,29 +9,23 @@ const stylesHandler = isProduction
     : "style-loader";
 
 const config = {
-    entry: path.resolve(__dirname, "./src/main/js/index.js"),
+    entry: path.resolve(__dirname, "./src/main/javascript/index.js"),
     output: {
         path: path.resolve(__dirname, "./src/main/resources/static"),
         publicPath: '/',
-        filename: "assets/pages/[name].[contenthash].js",
+        filename: "script/[name].[contenthash].js",
         clean: true
     },
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/i,
+                test: /\.(m?js|jsx)$/i,
                 exclude: /(node_modules)/,
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ["@babel/preset-env",
-                                [
-                                    "@babel/preset-react", {
-                                        "runtime": "automatic"
-                                    }
-                                ]
-                            ]
+                            presets: ["@babel/preset-env", "@babel/preset-react"]
                         }
                     }
                 ]
@@ -53,8 +47,12 @@ const config = {
     devtool: "source-map",
     plugins: [
         new HtmlWebpackPlugin({
-            filename: 'assets/pages/index.html',
-            template: 'src/main/js/templates/index.html'
+            filename: 'pages/index.html',
+            template: 'src/main/resources/templates/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: "styes/[name].[contenthash].css",
+            ignoreOrder: true
         })
     ],
     optimization: {
@@ -74,11 +72,6 @@ const config = {
 module.exports = () => {
     if (isProduction) {
         config.mode = "production";
-
-        config.plugins.push(new MiniCssExtractPlugin({
-            filename: "src/main/resources/static/assets/pages/[name]/[name].[contenthash].css",
-            ignoreOrder: true
-        }));
     } else {
         config.mode = "development";
     }
