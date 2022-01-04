@@ -81,5 +81,10 @@ out/
 .vscode/
 node_modules
 
+### Application specifics ###
+
 # Code Formatter Cache
 .cache
+
+# Webpack results
+/src/main/resources/static

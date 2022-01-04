@@ -5,10 +5,10 @@ import Counter from './Counter';
 
 const App = () => {
   return (
-    <div className="App" >
+    <React.Fragment>
       <CounterDisplay />
       <Counter />
-    </div>
+    </React.Fragment>
   );
 }
 

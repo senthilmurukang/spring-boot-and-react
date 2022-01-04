@@ -4,14 +4,14 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const isProduction = process.env.NODE_ENV == "production";
 
-const stylesHandler = isProduction
-    ? MiniCssExtractPlugin.loader
-    : "style-loader";
+const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : "style-loader";
+    
+const scriptPath = isProduction ? "./src/main/resources/static" : "./build/resources/main/static"
 
 const config = {
     entry: path.resolve(__dirname, "./src/main/javascript/index.js"),
     output: {
-        path: path.resolve(__dirname, "./src/main/resources/static"),
+        path: path.resolve(__dirname, scriptPath),
         publicPath: '/',
         filename: "script/[name].[contenthash].js",
         clean: true

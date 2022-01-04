@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux'
 
-import { incremented } from '../reducers/counterReducer'
+import Button from './button/Button'
+
+import { incremented, decremented } from '../reducers/counterReducer'
 
 function Counter() {
     const dispatch = useDispatch()
@@ -10,9 +12,14 @@ function Counter() {
         dispatch(incremented());
     }
 
+    const decrement = () => {
+        dispatch(decremented());
+    }
+
     return (
         <div>
-            <button onClick={increment}>Increment</button>
+            <Button onClick={increment}>Increment</Button>
+            <Button onClick={decrement}>Decrement</Button>
         </div>
     )
 }
