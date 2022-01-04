@@ -4,9 +4,7 @@ import { useSelector } from 'react-redux'
 function CounterDisplay() {
     const counter = useSelector((state) => state.value);
     return (
-        <div>
-            Value: {counter}
-        </div>
+        <div style={{ fontSize: '75px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{counter}</div>
     )
 }
 
